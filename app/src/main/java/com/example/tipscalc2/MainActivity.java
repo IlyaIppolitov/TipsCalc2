@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Определение вьюшек через их идентификтор (id)
         editTextAmount = findViewById(R.id.editTextAmount);
         seekBarTip = findViewById(R.id.seekBarTip);
         textViewTipPercentage = findViewById(R.id.textViewTipPercentage);
         textViewTipAmount = findViewById(R.id.textViewTipAmount);
         textViewTotalAmount = findViewById(R.id.textViewTotalAmount);
 
+        // Подписка на событие изменения состояние SeekBar
         seekBarTip.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
+        // Подписка на изменение текст блока с суммой заказа
         editTextAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Функция расчёта суммы чаевых и итоговой суммы
     private void calculateTipAndTotal() {
         String amountText = editTextAmount.getText().toString();
         if (amountText.isEmpty()) {
